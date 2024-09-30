@@ -81,10 +81,18 @@ if len(periodo)>1:
 
     chd_in = int(df_mapa_filtrado['Total CHD'].sum())
 
-    chd_in_metade = int(chd_in/2)
-
     st.success(f'No período selecionado existem {adt_in + chd_in} passageiros.')
 
     df_mapa_filtrado_group = df_mapa_filtrado.groupby('Servico')['Paxs Totais'].sum().reset_index()
 
-    st.dataframe(df_mapa_filtrado_group.sort_values(by='Paxs Totais', ascending=False), hide_index=True)
+    row1 = st.columns(2)
+
+    with row1[0]:
+
+        st.dataframe(df_mapa_filtrado_group.sort_values(by='Paxs Totais', ascending=False), hide_index=True)
+
+    df_mapa_filtrado_group_parceiro = df_mapa_filtrado.groupby('Parceiro')['Paxs Totais'].sum().reset_index()
+
+    with row1[1]:
+
+        st.dataframe(df_mapa_filtrado_group_parceiro.sort_values(by='Paxs Totais', ascending=False), hide_index=True)
