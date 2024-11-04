@@ -2,6 +2,7 @@ import pandas as pd
 import mysql.connector
 import decimal
 import streamlit as st
+# Teste Commit
 
 def gerar_df_phoenix(vw_name):
     # Parametros de Login AWS
